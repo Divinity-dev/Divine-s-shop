@@ -29,11 +29,9 @@ res.status(200).json("user deleted successfully")
 router.get("/:id", verifyAuthAndAdmin, async (req, res)=>{
   try{
   const user = await User.findById(req.params.id)
-  console.log(user)
   const {password, ...others} = user._doc;
   res.status(200).json(others)
   }catch(err){
-    console.log(err)
     res.status(400).json(err)
   }
   })
