@@ -29,4 +29,14 @@ const verifyAuth = (req, res, next)=>{
     })
 }
 
-module.exports = {verifyToken, verifyAuth}
+const verifyAuthAndAdmin = (req, res, next)=>{
+    verifyToken(req, res, ()=>{
+        if(req.user.isAdmin){
+            next()
+        }else{
+             res.status(400).json("you're not allowed to do that")
+        }
+    })
+}
+
+module.exports = {verifyToken, verifyAuth, verifyAuthAndAdmin}
