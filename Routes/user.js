@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {verifyToken, verifyAuth} = require("./VerifyToken")
+const {verifyToken, verifyAuth, verifyAuthAndAdmin} = require("./VerifyToken")
 const User = require("../models/User")
 
 router.put("/:id", verifyAuth, async (req, res)=>{
@@ -15,6 +15,15 @@ router.put("/:id", verifyAuth, async (req, res)=>{
     res.status(400).json(err)
    }
 
+})
+// Delete
+router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
+try{
+await User.findByIdAndDelete(req.params.id)
+res.status(200).json("user deleted successfully")
+}catch(err){
+  res.status(400).json(err)
+}
 })
 
 
