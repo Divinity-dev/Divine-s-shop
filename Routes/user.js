@@ -17,7 +17,7 @@ router.put("/:id", verifyAuth, async (req, res)=>{
 
 })
 // Delete
-router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
+router.delete("/find/:id", verifyAuthAndAdmin, async (req, res)=>{
 try{
 await User.findByIdAndDelete(req.params.id)
 res.status(200).json("user deleted successfully")
@@ -25,6 +25,17 @@ res.status(200).json("user deleted successfully")
   res.status(400).json(err)
 }
 })
-
+// Get user
+router.get("/:id", verifyAuthAndAdmin, async (req, res)=>{
+  try{
+  const user = await User.findById(req.params.id)
+  console.log(user)
+  const {password, ...others} = user._doc;
+  res.status(200).json(others)
+  }catch(err){
+    console.log(err)
+    res.status(400).json(err)
+  }
+  })
 
 module.exports = router;
