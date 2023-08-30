@@ -51,5 +51,26 @@ router.get("/find/:id", async (req, res)=>{
     }
     })
 
+      // Get all Products
+  router.get("/", async (req, res)=>{
+    const qnew = req.query.new
+    const qCategory = req.query.Category
+    try{
+        let product;
+        if(qnew){
+           product = await Products.find().sort({createdAt: -1}).limit(5)
+        }else
+        if(qCategory){
+            product = await Products.find({categories: { $in:[qCategory]}})
+        }else{
+            product = await Products.find()
+        }
+    
+    res.status(200).json(product)
+    }catch(err){
+      res.status(400).json(err)
+    }
+    })
+
 
 module.exports = router;
