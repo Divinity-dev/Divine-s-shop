@@ -17,6 +17,7 @@ router.put("/:id", verifyAuth, async (req, res)=>{
    }
 
 })
+
 // Delete
 router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
 try{
@@ -26,6 +27,7 @@ res.status(200).json("user deleted successfully")
   res.status(400).json(err)
 }
 })
+
 // Get user
 router.get("/find/:id", verifyAuthAndAdmin, async (req, res)=>{
   try{

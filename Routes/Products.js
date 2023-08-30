@@ -31,5 +31,15 @@ router.put("/:id", verifyAuthAndAdmin, async (req, res)=>{
   
   })
 
+  // Delete
+router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
+    try{
+    await Products.findByIdAndDelete(req.params.id)
+    res.status(200).json("Product deleted successfully")
+    }catch(err){
+      res.status(400).json(err)
+    }
+    })
+
 
 module.exports = router;
