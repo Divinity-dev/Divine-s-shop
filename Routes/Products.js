@@ -41,5 +41,15 @@ router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
     }
     })
 
+    // Get products
+router.get("/find/:id", async (req, res)=>{
+    try{
+    const product = await Products.findById(req.params.id)
+    res.status(200).json(product)
+    }catch(err){
+      res.status(400).json(err)
+    }
+    })
+
 
 module.exports = router;
