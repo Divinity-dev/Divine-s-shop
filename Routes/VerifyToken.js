@@ -12,6 +12,7 @@ const verifyToken = (req, res, next) => {
             }
             req.user = data
             next();
+           
         })
     }else{
         res.status(401).json("you're not authenticated")
@@ -23,17 +24,18 @@ const verifyAuth = (req, res, next)=>{
         if(req.user.id === req.params.id || req.user.isAdmin){
             next()
         }else{
-             res.status(400).json("you're not allowed to do that")
+             res.status(500).json("you're not allowed to do that")
         }
     })
 }
 
 const verifyAuthAndAdmin = (req, res, next)=>{
+    
     verifyToken(req, res, ()=>{
         if(req.user.isAdmin){
             next()
         }else{
-             res.status(400).json("you're not allowed to do that")
+             res.status(500).json("you're not allowed to do that")
         }
     })
 }
