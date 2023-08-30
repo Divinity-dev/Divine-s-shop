@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const env = require("dotenv")
 const userRoute = require("./Routes/user")
 const authRoute = require("./Routes/auth")
+const productRoute = require("./Routes/Products")
 
 env.config()
 
@@ -14,6 +15,7 @@ mongoose.connect(process.env.DB_URL)
 app.use(express.json())
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
+app.use("/api/products", productRoute)
 
 
 app.listen(5000, ()=>{
