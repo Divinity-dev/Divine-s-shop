@@ -5,6 +5,8 @@ const env = require("dotenv")
 const userRoute = require("./Routes/user")
 const authRoute = require("./Routes/auth")
 const productRoute = require("./Routes/Products")
+const CartRoute = require("./Routes/Carts")
+const OrderRoute = require("./Routes/Order")
 
 env.config()
 
@@ -16,6 +18,8 @@ app.use(express.json())
 app.use("/api/auth", authRoute)
 app.use("/api/user", userRoute)
 app.use("/api/products", productRoute)
+app.use("/api/Cart", CartRoute)
+app.use("/api/Order", OrderRoute)
 
 
 app.listen(5000, ()=>{

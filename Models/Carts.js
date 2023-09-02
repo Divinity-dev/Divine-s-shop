@@ -5,7 +5,7 @@ const Cartschema = new mongoose.Schema(
     UserId: {type: String, unique:true, required: true},
     Products: [
         {
-            ProductId: { type:string},
+            ProductId: { type:String},
             quantity: {type: Number, default: 1}
         }
     ]
