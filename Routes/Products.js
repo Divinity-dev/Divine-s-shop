@@ -40,7 +40,7 @@ router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
     }
     })
 
-    // Get products
+    // Get product
 router.get("/find/:id", async (req, res)=>{
     try{
     const product = await Products.findById(req.params.id)
@@ -64,7 +64,6 @@ router.get("/find/:id", async (req, res)=>{
         }else{
             product = await Products.find()
         }
-    
     res.status(200).json(product)
     }catch(err){
       res.status(400).json(err)
