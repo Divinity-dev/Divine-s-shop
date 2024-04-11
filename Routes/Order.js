@@ -52,9 +52,9 @@ router.get("/find/:userid",verifyAuth, async (req, res)=>{
     })
 
     // Get all orders
-    router.get("/",verifyAuth, async (req, res)=>{
+    router.get("/",verifyAuthAndAdmin, async (req, res)=>{
         try{
-            const orders = await Cart.find()
+            const orders = await Order.find()
             res.status(200).json(orders)
         }catch(err){
             res.status(500).json(err)
