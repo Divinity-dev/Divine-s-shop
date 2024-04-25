@@ -40,7 +40,7 @@ const acessToken = jwt.sign({
     id: user._id,
     isAdmin: user.isAdmin
 }, process.env.jwt_key,
-{expiresIn:"2d"})
+{expiresIn:"3d"})
 const {password, ...others} = user._doc;
  res.status(200).json({...others, acessToken})
 }catch(err){
