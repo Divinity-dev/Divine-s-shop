@@ -14,6 +14,8 @@ router.post("/", verifyAuth,  async (req, res)=>{
         res.status(400).json(err)
     }
 })
+
+
  
 //Update
 router.put("/:id", verifyAuth, async (req, res)=>{

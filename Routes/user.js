@@ -18,6 +18,22 @@ router.put("/:id", verifyAuth, async (req, res)=>{
 
 })
 
+//create
+router.post("/admin/register", verifyAuthAndAdmin, async (req,res)=>{
+  const user = new User({
+    username:req.body.username,
+    email:req.body.email,
+    password:CryptoJS.AES.encrypt(req.body.password, process.env.pass_key).toString()
+  })
+  try {
+    const saveduser = await user.save()
+    res.status(200).json(saveduser)
+  } catch (error) {
+    res.status(400).json(error)
+    console.log(error)
+  }
+})
+
 // Delete
 router.delete("/:id", verifyAuthAndAdmin, async (req, res)=>{
 try{
