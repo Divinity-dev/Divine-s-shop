@@ -1,6 +1,3 @@
-console.log("Current Directory:", __dirname);
-console.log("Files in models directory:", fs.readdirSync(path.join(__dirname, 'models')));
-
 const express = require("express")
 const app = express()
 const mongoose = require("mongoose")
