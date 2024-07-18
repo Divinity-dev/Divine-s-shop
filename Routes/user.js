@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {verifyToken, verifyAuth, verifyAuthAndAdmin} = require("./VerifyToken")
-const User = require("../models/User.js")
+const User = require("../models/User")
 const CryptoJS = require("crypto-js")
 
 router.put("/:id", verifyAuth, async (req, res)=>{
